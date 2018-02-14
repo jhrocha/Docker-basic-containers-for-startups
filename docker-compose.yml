@@ -1,0 +1,41 @@
+version: "2"
+services:
+
+  ruby:
+    build:
+     context: ./Ruby
+     dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - "~/Documents/Development:/integrated_folder"
+    entrypoint:
+      - bash
+    tty: true
+    stdin_open: true  
+    links:
+      - postgres
+
+  postgres:
+    build:
+     context: ./Postgres-database
+     dockerfile: Dockerfile
+    ports:
+      - 5432:5432
+    entrypoint:
+      - bash
+    tty: true
+    stdin_open: true  
+
+  nodejs:
+    build:
+     context: ./NodeJS
+     dockerfile: Dockerfile     
+    ports:
+     - 4200:4200
+    volumes:
+      - "~/Documents/Development:/integrated_folder"
+    entrypoint:
+      - bash
+    tty: true
+    stdin_open: true        
