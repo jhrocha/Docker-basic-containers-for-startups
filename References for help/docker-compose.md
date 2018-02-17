@@ -4,7 +4,7 @@
 layout: 2017/sheet
 prism_languages: [yaml]
 updated: 2017-09-20
-from: https://github.com/rstacruz/cheatsheets/blob/master/docker-compose.md
+fork from: https://github.com/rstacruz/cheatsheets/blob/master/docker-compose.md
 ```
 ### Basic example
 
