@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 USER root
 
-RUN apt-get -y update && apt-get install -y curl && apt-get -y install sudo
+RUN apt-get -y update && apt-get install -y curl && apt-get -y install sudo && apt-get install -y git
 RUN curl -sSL https://rvm.io/mpapis.asc | sudo gpg --import -
 RUN \curl -L https://get.rvm.io | bash -s stable --rails
 RUN apt-get install -y libpq-dev
