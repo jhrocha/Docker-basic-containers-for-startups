@@ -1,43 +1,29 @@
 version: "3"
 services:
-
+  
+  nginx:
+    image: "nginx"
+    ports:
+      - 80:80
+      - 8081:8081
+  
   ruby:
-    build:
-     context: ./Ruby
-     dockerfile: Dockerfile 
+    image: "trakto/ruby-2.5.0:essential"
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: "0.2"
+          memory: 1024M
+      restart_policy:
+        condition: on-failure     
     ports:
-      - 3000:3000    
+      - 8080:8080    
+      - 3000:3000
+      - 4000:4000
     volumes:
-      - "~/Documents/Development:/integrated_folder"
-    entrypoint:
-      - bash
-    tty: true
-    stdin_open: true
-    links:
-      - postgres      
-    depends_on:
-      - postgres
-
-
-  postgres:
-    build:
-     context: ./Postgres-database
-     dockerfile: Dockerfile
-    ports:
-      - 5432:5432
-    entrypoint:
-      - bash
-    tty: true
-    stdin_open: true  
-
-  nodejs:
-    build:
-     context: ./NodeJS
-     dockerfile: Dockerfile     
-    ports:
-     - 4200:4200
-    volumes:
-      - "~/Documents/Development:/integrated_folder"
+      - "/var/www/ruby/app:/app"
+      - "/Users/jorgehsrocha/Documents/Development/traktopro-gh:integrated_folder/ruby_app"
     entrypoint:
       - bash
     tty: true

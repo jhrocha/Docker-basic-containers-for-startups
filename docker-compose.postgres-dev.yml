@@ -1,0 +1,12 @@
+version: "3"
+services:
+  postgres:
+    build:
+     context: ./Applications/Postgres-database
+     dockerfile: Dockerfile
+    ports:
+      - 5432:5432
+    entrypoint:
+      - bash
+    tty: true
+    stdin_open: true  

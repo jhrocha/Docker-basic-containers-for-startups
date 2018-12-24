@@ -11,20 +11,18 @@ RUN apt-get -y install sudo
 RUN apt-get install -y nginx
 
 #Install NodeJS V6
-RUN curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 RUN apt-get update
 RUN apt-get -y install nodejs
 
 #Basic node packages 
 RUN npm install -g typescript
-RUN npm install -g @angular/cli
+RUN npm install -g @angular/cli@6.2.1
 RUN ng --help
-
-#Process manager for node applications
-RUN npm install pm2@latest -g
 
 #Expose node ports
 EXPOSE 4200
+EXPOSE 8080
 
 # Create App directory
 RUN mkdir integrated_folder
